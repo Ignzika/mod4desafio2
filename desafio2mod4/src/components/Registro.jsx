@@ -1,7 +1,6 @@
 import LogginForm from "./Formulario";
 import Container from "react-bootstrap/Container";
 import SocialButton from "./SocialButton";
-import PhoneInput from "./Annoying";
 
 function RegisterBox() {
   let social = ["facebook", "twitter", "instagram", "linkedin", "github"];
@@ -15,10 +14,6 @@ function RegisterBox() {
         <SocialButton icons={social} />
 
         <LogginForm />
-
-        <span>esto es opcional</span>
-        <PhoneInput />
-        
       </Container>
     </>
   );
