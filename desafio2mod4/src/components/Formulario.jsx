@@ -27,33 +27,30 @@ const LogginForm = () => {
     e.preventDefault();
 
     const { name, email, password, checkpassword } = formData;
-
+    const checkPswrd = password !== checkpassword;
+    const blankData = !name || !email || !password || !checkpassword;
     setCustomAlert({ title: "", body: "", bgColor: "" });
 
-    if (!name || !email || !password || !checkpassword) {
-      setCustomAlert({
-        title: "Revisa los datos ingresados ",
-        body: "No has ingresado 1 o mas datos requeridos.",
+    blankData
+      ? setCustomAlert({
+          title: "Revisa los datos ingresados ",
+          body: "No has ingresado 1 o mas datos requeridos.",
+          bgColor: "bg-danger",
+        })
+      : setCustomAlert({
+          title:
+            "Todos los datos han sido correctamente ingresados felicidades ",
+          body: "Espere a su correo de confirmacion",
+          bgColor: "bg-success",
+        });
 
-        bgColor: "bg-danger",
-      });
-    } else {
-      setCustomAlert({
-        title: "Todos los datos han sido correctamente ingresados felicidades ",
-        body: "Espere a su correo de confirmacion",
-
-        bgColor: "bg-success",
-      });
-    }
-
-    if (password !== checkpassword) {
-      setCustomAlert({
-        title: "Contraseñas no son identicas",
-        body: "Las contraseñas ingresadas no coinciden, por favor intentelo nuevamente",
-
-        bgColor: "bg-warning",
-      });
-    }
+    checkPswrd == true
+      ? setCustomAlert({
+          title: "Contraseñas no son identicas",
+          body: "Las contraseñas ingresadas no coinciden, por favor intentelo nuevamente",
+          bgColor: "bg-warning",
+        })
+      : null;
 
     setFormData({ name: "", mail: "", password: "", checkpassword: "" });
   };
